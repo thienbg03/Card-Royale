@@ -1,12 +1,15 @@
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CardHolder : MonoBehaviour
 {
     private bool hasCard = false;
+    public string HolderType;
+    private Image image;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        image = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -18,6 +21,10 @@ public class CardHolder : MonoBehaviour
     public void SetHasCard(bool hasCard)
     {
        this.hasCard = hasCard;
+        if (hasCard) {
+            image.color = Color.green;
+        }
+      
     }
 
     public bool GetHasCard() {  

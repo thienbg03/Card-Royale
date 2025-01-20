@@ -8,7 +8,8 @@ public class GameManager : MonoBehaviour
     public GamePhase CurrentPhase;
     public GameObject CardArena;
     public TextMeshProUGUI countDownText;
-    private float turnTimer = 10f;
+    private float turnTimer = 30f;
+    private float maxTimer = 30f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private IEnumerator coroutine;
     private void Awake()
@@ -62,7 +63,7 @@ public class GameManager : MonoBehaviour
         //Reference to Player and Enemy Card Manager, add a card to hand
         //Add Logic to Handle Player playing card
         yield return new WaitForSeconds(turnTimer); // Simulate delay
-        turnTimer = 10f;
+        turnTimer = maxTimer;
         coroutine = Combat();
         StartTurn();
         //Exit Card Arena

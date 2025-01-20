@@ -7,7 +7,6 @@ using UnityEngine.WSA;
 
 public class CardInteraction : MonoBehaviour
 {
-   
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     private Vector2 startPosition;
     private Vector2 placingPosition;
@@ -16,10 +15,15 @@ public class CardInteraction : MonoBehaviour
     private bool isPlacing = false;
     private bool isDraggable = true;
     private CardHolder holder;
+    private Card cardInfo;
+
+    private PlayerCardManager CardManager;
     void Start()
     {
         originalParent = this.transform.parent;
         startPosition = this.transform.parent.transform.position;
+        cardInfo = GetComponent<Card>();
+        CardManager = GameObject.FindWithTag("Player").GetComponent<PlayerCardManager>();
     }
 
     // Update is called once per frame
@@ -30,7 +34,6 @@ public class CardInteraction : MonoBehaviour
 
     public void OnMouseDrag()
     {
-        Debug.Log("Dragging");
         if (isDragging && isDraggable)
         {
             transform.position = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
@@ -41,7 +44,6 @@ public class CardInteraction : MonoBehaviour
     {
         
         isDragging = true;
-        print("startdrag");
         this.transform.SetParent(this.transform.parent.transform.parent, true);
     }
 
@@ -49,10 +51,7 @@ public class CardInteraction : MonoBehaviour
     {
         if (isPlacing)
         {
-            transform.position = placingPosition;
-            this.transform.SetParent(holder.transform, true);
-            holder.SetHasCard(true);
-            isDraggable = false;
+           PlaceCard();
         }
         else
         {
@@ -60,16 +59,14 @@ public class CardInteraction : MonoBehaviour
             transform.position = startPosition;
         }
         isDragging = false;
-        print("enddrag");
     }
 
     void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "CardHolder")
         {
-            print("ON HOLDER");
             holder = other.gameObject.GetComponent<CardHolder>();
-            if (!holder.GetHasCard())
+            if (!holder.GetHasCard() && cardInfo.Type == holder.HolderType)
             {
                 placingPosition = other.transform.position;
                 other.gameObject.GetComponent<Image>().color = Color.green;
@@ -79,23 +76,25 @@ public class CardInteraction : MonoBehaviour
     }
 
 
-
     void OnTriggerExit2D(Collider2D other)
     {
         if (other.gameObject.tag == "CardHolder")
         {
-            if (holder.GetHasCard())
-            {
-                other.gameObject.GetComponent<Image>().color = Color.green;
-            }
-            else
+            if (cardInfo.Type == holder.HolderType && !holder.GetHasCard())
             {
                 other.gameObject.GetComponent<Image>().color = Color.red;
+                isPlacing = false;
             }
-           
-            isPlacing = false;
         }
-       
+    }
+
+    private void PlaceCard()
+    {
+        transform.position = placingPosition;
+        this.transform.SetParent(holder.transform, true);
+        holder.SetHasCard(true);
+        isDraggable = false;
+        CardManager.NumCardsOnhand = CardManager.NumCardsOnhand - 1;
     }
 
 }
