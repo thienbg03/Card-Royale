@@ -12,17 +12,17 @@ public class TestScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(1))
-        {
-            CardArenaCanvas.SetActive(false);
-            Debug.Log("np");
-        }
+        //if (Input.GetMouseButtonDown(1))
+        //{
+        //    CardArenaCanvas.SetActive(false);
+        //    Debug.Log("np");
+        //}
 
-        if (Input.GetMouseButtonDown(0))
-        {
-            CardArenaCanvas.SetActive(true);
-            Debug.Log("Card Arena");
-        }
+        //if (Input.GetMouseButtonDown(0))
+        //{
+        //    CardArenaCanvas.SetActive(true);
+        //    Debug.Log("Card Arena");
+        //}
     }
 }
 

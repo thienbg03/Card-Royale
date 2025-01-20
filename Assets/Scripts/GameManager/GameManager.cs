@@ -1,15 +1,15 @@
 using System.Collections;
 using UnityEngine;
-
+using TMPro;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
     public GamePhase CurrentPhase;
-
     public GameObject CardArena;
+    public TextMeshProUGUI countDownText;
+    private float turnTimer = 10f;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-
     private IEnumerator coroutine;
     private void Awake()
     {
@@ -32,7 +32,10 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (CurrentPhase == GamePhase.PlayPhase) {
+            turnTimer -= Time.deltaTime;
+            countDownText.text = ((int)turnTimer).ToString();
+        }
     }
 
     public void StartTurn()
@@ -45,10 +48,9 @@ public class GameManager : MonoBehaviour
     {
         CardArena.SetActive(true);
         CurrentPhase = GamePhase.DrawPhase;
+        countDownText.text = "Draw";
         //Reference to Player and Enemy Card Manager, add a card to hand
-        Debug.Log(CurrentPhase);
-        yield return new WaitForSeconds(3f); // Simulate delay
-
+        yield return new WaitForSeconds(5f); // Simulate delay
         coroutine = PlayCard();
         StartTurn();
     }
@@ -59,10 +61,10 @@ public class GameManager : MonoBehaviour
         Debug.Log(CurrentPhase);
         //Reference to Player and Enemy Card Manager, add a card to hand
         //Add Logic to Handle Player playing card
-        yield return new WaitForSeconds(5f); // Simulate delay
+        yield return new WaitForSeconds(turnTimer); // Simulate delay
+        turnTimer = 10f;
         coroutine = Combat();
         StartTurn();
-
         //Exit Card Arena
         CardArena.SetActive(false);
     }
