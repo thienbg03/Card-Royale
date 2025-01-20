@@ -26,8 +26,8 @@ public class GameManager : MonoBehaviour
     void Start()
     {
         //On Start, add 3 cards to both player and enemy deck
-        coroutine = DrawCard();
-        StartTurn();
+        //coroutine = DrawCard();
+        //StartTurn();
     }
 
     // Update is called once per frame
