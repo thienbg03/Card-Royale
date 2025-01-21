@@ -47,6 +47,7 @@ public class GameManager : MonoBehaviour
 
     private IEnumerator DrawCard()
     {
+        Cursor.lockState = CursorLockMode.None;
         CardArena.SetActive(true);
         CurrentPhase = GamePhase.DrawPhase;
         countDownText.text = "Draw";
@@ -73,11 +74,13 @@ public class GameManager : MonoBehaviour
     private IEnumerator Combat()
     {
         //Add Logic to Handle Player playing card
+        Cursor.lockState = CursorLockMode.Locked;
         CurrentPhase = GamePhase.CombatPhase;
         Debug.Log(CurrentPhase);
         yield return new WaitForSeconds(7f); // Simulate delay
         Debug.Log("Done Turn");
         coroutine = DrawCard();
+        
         StartTurn();
     }
 

@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,7 +34,7 @@ public class PlayerInputTPC : MonoBehaviour
     {
         if (inputVector != Vector2.zero)
         {
-            if (isSprinting){
+            if (isSprinting && PlayerManager.Instance.stamina > 10){
                 speed = runningSpeed;
             }
             else
@@ -47,6 +48,7 @@ public class PlayerInputTPC : MonoBehaviour
         {
             speed = 0f;
         }
+        PlayerManager.Instance.animationManager.UpdateAnimatorPlayerSpeed(speed);
     }
 
     public void OnMove(InputAction.CallbackContext context)
@@ -59,8 +61,23 @@ public class PlayerInputTPC : MonoBehaviour
     {
         isSprinting = context.action.IsPressed();
     }
+
+    public void OnDodge(InputAction.CallbackContext context)
+    {
+        if (PlayerManager.Instance.IsPerformingAction)
+            return;
+
+        if (PlayerManager.Instance.stamina < 35)
+            return;
+
+        PlayerManager.Instance.animationManager.PerformAnimationAction("Dodge", true, true);
+        Debug.Log("dodge");
+    }
     private void MoveCharacter()
     {
+        if (!PlayerManager.Instance.CanMove)
+            return;
+
         // Movement based on the direction of the camera
         verticalInput = inputVector.y;
         horizontalInput = inputVector.x;  
@@ -68,13 +85,47 @@ public class PlayerInputTPC : MonoBehaviour
         movementDirection += PlayerCamera.transform.right * horizontalInput;
         movementDirection.Normalize(); // Normalize to prevent diagonal speed boosts
         movementDirection *= speed * Time.deltaTime; // Apply speed and frame rate adjustment
+        movementDirection = new Vector3 (movementDirection.x, movementDirection.y - movementDirection.y, movementDirection.z);
         transform.position += movementDirection; // Move the character
     }
 
     private void RotateCharacter()
     {
+       if (!PlayerManager.Instance.CanRotate)
+            return;
+
        Quaternion newRotation = Quaternion.LookRotation(movementDirection);
        Quaternion targetRotation = Quaternion.Slerp(transform.rotation, newRotation, rotationSpeed* Time.deltaTime);
        transform.rotation = targetRotation;
+    }
+
+    public void DepleteStamina(float amount)
+    {
+        PlayerManager.Instance.stamina -= amount;
+        PlayerManager.Instance.stamina = Mathf.Clamp(PlayerManager.Instance.stamina, 0, 100);
+        print("Stamina Depleted: " + PlayerManager.Instance.stamina);
+        if(PlayerManager.Instance.stamina <= 0)
+        {
+            StartCoroutine(StaminaDepleted());
+        }
+    }
+
+    public void AddStamina(float amount)
+    {
+        if (!PlayerManager.Instance.CanAddStamina)
+        {
+            return;
+        }
+        PlayerManager.Instance.stamina += amount;
+        PlayerManager.Instance.stamina = Mathf.Clamp(PlayerManager.Instance.stamina, 0, 100);
+        print("Stamina Added: " + PlayerManager.Instance.stamina);
+    }
+
+    private IEnumerator StaminaDepleted()
+    {
+        print("TIREDDD");
+       PlayerManager.Instance.CanAddStamina = false;
+       yield return new WaitForSeconds(3f);
+       PlayerManager.Instance.CanAddStamina = true;
     }
 }
