@@ -1,10 +1,13 @@
 using BreadcrumbAi;
+using System.Collections;
 using UnityEngine;
 
-public class PlayerWeapon : MonoBehaviour
+public class FireWeapon : MonoBehaviour
 {
 
     public float weaponDamage;
+    public float fireDamage;
+    public int burnDuration;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -24,10 +27,20 @@ public class PlayerWeapon : MonoBehaviour
         {
             if (other.gameObject.GetComponent<Enemy>())
             {
-                other.gameObject.GetComponent<Enemy>().TakeDamage(weaponDamage);
-                print("HIT ENEMY: " + other.gameObject.GetComponent<Enemy>().GetComponent<Ai>().Health);
+                Enemy enemy = other.gameObject.GetComponents<Enemy>()[0];
+                enemy.TakeDamage(weaponDamage);
+                if (!enemy.isBurning && enemy.canBurn)
+                {
+                    if((int)Random.Range(0,100) > 10)
+                    {
+                        enemy.TakeBurnDamage(burnDuration, 50);
+                    }
+                }
             }
            
         }
     }
+
+    
+
 }

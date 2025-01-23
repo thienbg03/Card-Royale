@@ -41,6 +41,7 @@ public class PlayButton : MonoBehaviour
     public void QuitGame()
     {
         Application.Quit();
+        Debug.Log("QUITTING");
     }
 
     public void Restart()

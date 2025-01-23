@@ -1,4 +1,7 @@
 using BreadcrumbAi;
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +16,8 @@ public class BossAI : Enemy
     public GameObject insideCollision;
     public Slider healthSlider;
     private Vector3 orignalPosition;
+    public GameObject burnArea;
+    public GameObject fireFX;
     void Start()
     {
         ai = GetComponent<Ai>();
@@ -91,5 +96,33 @@ public class BossAI : Enemy
         //DEBUG VICTORY
         Destroy(this.gameObject, 0.5f);
         GameManager.Instance.WinGame();
+    }
+
+    public override void TakeBurnDamage(int ticks, float damage)
+    {
+        StartCoroutine(BurnHandler(ticks, damage));
+    }
+
+    private IEnumerator BurnHandler(int ticks, float damage)
+    {
+        isBurning = true;
+        for (int i = 0; i < ticks; i++)
+        {
+            yield return new WaitForSeconds(1f);
+            SpawnfireEffects();
+            TakeDamage(damage);
+            print("BURN");
+        }
+        isBurning = false;
+    }
+    private void SpawnfireEffects()
+    {
+
+        Vector3 randomPoint = Random.insideUnitSphere;
+        randomPoint *= burnArea.GetComponent<SphereCollider>().radius * burnArea.GetComponent<SphereCollider>().transform.localScale.x;
+
+        GameObject go = Instantiate(fireFX, burnArea.transform);
+        go.transform.position = randomPoint;
+        Destroy(go, 2f);
     }
 }

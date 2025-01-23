@@ -97,6 +97,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weaponDamage: 50
+  fireDamage: 50
+  burnDuration: 5
 --- !u!65 &5803296985959517371
 BoxCollider:
   m_ObjectHideFlags: 0

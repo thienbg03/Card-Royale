@@ -14,7 +14,7 @@ public class GameManager : MonoBehaviour
     private float combatMaxTimer = 30f;
     private IEnumerator coroutine;
     private bool isPause;
-
+    private AudioSource audioSource;
     public static GameManager Instance;
     public GamePhase CurrentPhase;
     public GameObject CardArena;
@@ -29,7 +29,7 @@ public class GameManager : MonoBehaviour
     public GameObject cardInfoOverlay;
     public AudioClip CardArenaMusic;
     public AudioClip CombatArenaMusic;
-    private AudioSource audioSource;
+    public TMP_Text instructionText;
     private void Awake()
     {
         if (Instance == null)
@@ -128,7 +128,15 @@ public class GameManager : MonoBehaviour
         {
             PlayerManager.Instance.PlayerState = PlayerState.None;
             PlayerManager.Instance.EquipWeapon();
+            instructionText.text = "No Weapon Run\nPress ESC to pause the game";
         }
+
+        if(PlayerManager.Instance.PlayerState == PlayerState.Bow)
+            instructionText.text = "Hold Right Click To AIM, then Left Click to Shoot\nPress ESC to pause the game";
+
+        if (PlayerManager.Instance.PlayerState == PlayerState.Sword)
+            instructionText.text = "Left Click to Attack, left Click again at the end of your first to attack twice\nPress ESC to pause the game";
+
         PlayerManager.Instance.CardManager.ResetDeck();
         CombatObjects.SetActive(true);
         PlayerInput.enabled = true;
@@ -143,6 +151,7 @@ public class GameManager : MonoBehaviour
     {
         if (equipementHolder.GetHasCard()) { 
             PlayerManager.Instance.ResetEquipment();
+            
         }
         CombatObjects.SetActive(false);
         combatTimer = combatMaxTimer;

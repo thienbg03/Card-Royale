@@ -142,7 +142,7 @@ public class PlayerInputTPC : MonoBehaviour
         if (context.canceled) //the key has been released
         {
             isAiming = false;
-            PlayerManager.Instance.animationManager.UpdateAnimationParamter("IsAiming", true);
+            PlayerManager.Instance.animationManager.UpdateAnimationParamter("IsAiming", false);
             PlayerManager.Instance.SwitchToDefaultCamera();
         }
     }

@@ -46,4 +46,6 @@ public class SummonCard : Card
             Destroy(gameObject, 0.8f);
         }
     }
+
+
 }
