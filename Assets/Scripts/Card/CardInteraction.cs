@@ -77,7 +77,7 @@ public class CardInteraction : MonoBehaviour
         {
             if (cardInfo.Type == holder.HolderType && !holder.GetHasCard())
             {
-                other.gameObject.GetComponent<Image>().color = Color.red;
+                other.gameObject.GetComponent<CardHolder>().ResetHolder();
                 isPlacing = false;
             }
         }

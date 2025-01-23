@@ -7,10 +7,12 @@ public class CardHolder : MonoBehaviour
     public string HolderType;
     private Image image;
     public int ID;
+    private Color defaultColor;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         image = GetComponent<Image>();
+        defaultColor = GetComponent<Image>().color;
     }
 
     // Update is called once per frame
@@ -34,7 +36,7 @@ public class CardHolder : MonoBehaviour
 
     public void ResetHolder()
     {
-        image.color = Color.red;
+        image.color = defaultColor;
         hasCard = false;
     }
 }

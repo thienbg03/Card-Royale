@@ -87,7 +87,7 @@ public class GameManager : MonoBehaviour
         PlayerInput.enabled = false;
         CurrentPhase = GamePhase.DrawPhase;
         countDownText.text = "Draw";
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
         coroutine = PlayCard();
         StartTurn();
     }
