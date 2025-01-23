@@ -6,6 +6,7 @@ public abstract class Card : MonoBehaviour
     [SerializeField] private string description;
     [SerializeField] private int manaCost;
     [SerializeField] private string type;
+    [SerializeField] private GameObject model;
 
     public string Type
     {
@@ -31,7 +32,13 @@ public abstract class Card : MonoBehaviour
         set { manaCost = value; }
     }
 
-    public abstract void PlayCard(); 
+    public GameObject Model
+    {
+        get { return model; }
+        set { model = value; }
+    }
+
+    public abstract void PlayCard(Transform summon = null); 
     public abstract void ActivateEffect(); 
 
     public void DisplayCardInfo()

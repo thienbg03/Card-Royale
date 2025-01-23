@@ -19,6 +19,11 @@ public class PlayerAnimationManager : MonoBehaviour
         PlayerManager.Instance.animator.SetFloat("Speed", speed);
     }
 
+    public void UpdateAnimatorAttackCombo(bool combo)
+    {
+        PlayerManager.Instance.animator.SetBool("DoCombo", combo);
+    }
+
     public void PerformAnimationAction(string targetAnimation, bool isPerformingAction, bool applyRootMotion = false, bool canMove = false, bool canRotate = false)
     {
         PlayerManager.Instance.animator.applyRootMotion = applyRootMotion;
@@ -27,4 +32,11 @@ public class PlayerAnimationManager : MonoBehaviour
         PlayerManager.Instance.CanRotate = canMove;
         PlayerManager.Instance.CanMove = canRotate;
     }
+
+
+    public void UpdateAnimationParamter(string parameter, bool value)
+    {
+        PlayerManager.Instance.animator.SetBool(parameter, value);
+    }
+
 }

@@ -8,9 +8,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -8428702230962710675, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1620004735567117259, guid: c02de827a3d55d646ab072d5b6642da8, type: 3}
+    - target: {fileID: -8428702230962710675, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+      propertyPath: cardName
+      value: Mage
+      objectReference: {fileID: 0}
+    - target: {fileID: -8428702230962710675, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+      propertyPath: description
+      value: Range Mob
+      objectReference: {fileID: 0}
     - target: {fileID: 2276630253843586068, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
       propertyPath: m_Name
-      value: MageCard
+      value: MageSummonCard
       objectReference: {fileID: 0}
     - target: {fileID: 4424806359578939976, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
       propertyPath: m_Pivot.x
@@ -96,6 +108,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 5b4b5a66676b94349824656fd9c06de3, type: 3}
+    - target: {fileID: 8737912346281670139, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+      propertyPath: model
+      value: 
+      objectReference: {fileID: 1620004735567117259, guid: c02de827a3d55d646ab072d5b6642da8, type: 3}
     - target: {fileID: 8737912346281670139, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
       propertyPath: cardName
       value: Mustard Mage

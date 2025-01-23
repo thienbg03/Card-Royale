@@ -1,9 +1,5 @@
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.Audio;
-using UnityEngine.U2D;
 using UnityEngine.UI;
-using UnityEngine.WSA;
 
 public class CardInteraction : MonoBehaviour
 {
@@ -16,14 +12,15 @@ public class CardInteraction : MonoBehaviour
     private bool isDraggable = true;
     private CardHolder holder;
     private Card cardInfo;
-
     private PlayerCardManager CardManager;
+    private Image cardImage;
     void Start()
     {
         originalParent = this.transform.parent;
         startPosition = this.transform.parent.transform.position;
         cardInfo = GetComponent<Card>();
         CardManager = GameObject.FindWithTag("Player").GetComponent<PlayerCardManager>();
+        cardImage = GetComponent<Image>();
     }
 
     // Update is called once per frame
@@ -42,7 +39,6 @@ public class CardInteraction : MonoBehaviour
 
     public void StartDrag()
     {
-        
         isDragging = true;
         this.transform.SetParent(this.transform.parent.transform.parent, true);
     }
@@ -56,7 +52,6 @@ public class CardInteraction : MonoBehaviour
         else
         {
             this.transform.SetParent(originalParent, true);
-            transform.position = startPosition;
         }
         isDragging = false;
     }
@@ -95,6 +90,47 @@ public class CardInteraction : MonoBehaviour
         holder.SetHasCard(true);
         isDraggable = false;
         CardManager.NumCardsOnhand = CardManager.NumCardsOnhand - 1;
+        if(cardInfo.Type == "summon")
+        {
+            foreach (CombatPlacement cp in CardManager.CombatPlacement)
+            {
+                if(cp.ID == holder.ID)
+                {
+                    cardInfo.PlayCard(cp.SpawnPosition.transform);
+                    break;
+                }
+            }
+            
+        }
+        else
+        {
+            cardInfo.PlayCard();
+        }
+        
+    }
+
+    public void OnCardEnter()
+    {
+        if (!isDraggable || isDragging) // Prevent if not draggable or currently dragging
+            return;
+
+        transform.position += new Vector3(0, 10);
+    }
+
+    public void OnCardExit()
+    {
+        if (!isDraggable || isDragging) // Prevent if not draggable or currently dragging
+            return;
+
+        transform.position -= new Vector3(0, 10);
+    }
+
+    public void OnCardClick()
+    {
+        if (isDragging) // Prevent if currently dragging
+            return;
+
+        GameManager.Instance.ShowCardInfo(cardImage);
     }
 
 }

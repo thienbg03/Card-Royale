@@ -6,6 +6,7 @@ public class CardHolder : MonoBehaviour
     private bool hasCard = false;
     public string HolderType;
     private Image image;
+    public int ID;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -29,5 +30,11 @@ public class CardHolder : MonoBehaviour
 
     public bool GetHasCard() {  
         return hasCard; 
+    }
+
+    public void ResetHolder()
+    {
+        image.color = Color.red;
+        hasCard = false;
     }
 }

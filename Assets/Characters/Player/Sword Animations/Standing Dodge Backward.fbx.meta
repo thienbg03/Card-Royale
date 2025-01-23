@@ -59,7 +59,14 @@ ModelImporter:
         functionName: DepleteStamina
         data: 
         objectReferenceParameter: {fileID: 733128613051972444, guid: b2437d5e0198cfc46b2193045cb45807, type: 3}
-        floatParameter: 35
+        floatParameter: 15
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.14583333
+        functionName: PlayDodgeSound
+        data: 
+        objectReferenceParameter: {fileID: 733128613051972444, guid: b2437d5e0198cfc46b2193045cb45807, type: 3}
+        floatParameter: 0
         intParameter: 0
         messageOptions: 0
       transformMask: []

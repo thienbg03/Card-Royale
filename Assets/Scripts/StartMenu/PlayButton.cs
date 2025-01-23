@@ -10,13 +10,13 @@ public class PlayButton : MonoBehaviour
     {
         backgroundImage = GetComponent<Image>();
         text = GetComponentInChildren<Text>();
-
+       
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        Cursor.lockState = CursorLockMode.None;
     }
 
     public void MouseHover()
@@ -36,5 +36,15 @@ public class PlayButton : MonoBehaviour
     public void MouseClick()
     {
         SceneManager.LoadScene("Level1");
+    }
+
+    public void QuitGame()
+    {
+        Application.Quit();
+    }
+
+    public void Restart()
+    {
+        SceneManager.LoadScene("StartMenu");
     }
 }

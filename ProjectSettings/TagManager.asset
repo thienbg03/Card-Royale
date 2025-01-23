@@ -6,6 +6,10 @@ TagManager:
   tags:
   - Card
   - CardHolder
+  - Waypoint
+  - Destructible
+  - Enemy
+  - Breadcrumb
   layers:
   - Default
   - TransparentFX
@@ -14,10 +18,10 @@ TagManager:
   - Water
   - UI
   - 
-  - 
-  - 
-  - 
-  - 
+  - Breadcrumb
+  - Player
+  - Enemy
+  - Breadcrumb
   - 
   - 
   - 

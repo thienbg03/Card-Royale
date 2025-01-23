@@ -62,6 +62,20 @@ ModelImporter:
         floatParameter: 5
         intParameter: 0
         messageOptions: 0
+      - time: 0.24305554
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 733128613051972444, guid: b2437d5e0198cfc46b2193045cb45807, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.7395834
+        functionName: PlayWalkSound
+        data: 
+        objectReferenceParameter: {fileID: 733128613051972444, guid: b2437d5e0198cfc46b2193045cb45807, type: 3}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
       transformMask: []
       maskType: 3
       maskSource: {instanceID: 0}

@@ -8,6 +8,8 @@ public class ResetActions : StateMachineBehaviour
         PlayerManager.Instance.IsPerformingAction = false;
         PlayerManager.Instance.CanRotate = true;
         PlayerManager.Instance.CanMove = true;
+        PlayerManager.Instance.CanDoCombo = false;
+        PlayerManager.Instance.animationManager.UpdateAnimatorAttackCombo(false);
     }
 
     // OnStateUpdate is called on each Update frame between OnStateEnter and OnStateExit callbacks

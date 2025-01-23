@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4693724665544356512}
   - component: {fileID: 7217050276643198657}
   - component: {fileID: 7721302358569184227}
-  - component: {fileID: 8737912346281670139}
+  - component: {fileID: -8428702230962710675}
   m_Layer: 5
   m_Name: KnightSummonCard
   m_TagString: Card
@@ -30,7 +30,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2276630253843586068}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 0.64991, z: 1}
   m_ConstrainProportionsScale: 0
@@ -141,6 +141,54 @@ MonoBehaviour:
             m_StringArgument: 
             m_BoolArgument: 0
           m_CallState: 2
+  - eventID: 0
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4693724665544356512}
+          m_TargetAssemblyTypeName: CardInteraction, Assembly-CSharp
+          m_MethodName: OnCardEnter
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 1
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4693724665544356512}
+          m_TargetAssemblyTypeName: CardInteraction, Assembly-CSharp
+          m_MethodName: OnCardExit
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+  - eventID: 4
+    callback:
+      m_PersistentCalls:
+        m_Calls:
+        - m_Target: {fileID: 4693724665544356512}
+          m_TargetAssemblyTypeName: CardInteraction, Assembly-CSharp
+          m_MethodName: OnCardClick
+          m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
 --- !u!114 &4693724665544356512
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -153,6 +201,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d36ae6d6c67ac524690d98f358386f9a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cardInfoOverlay: {fileID: 2276630253843586068}
 --- !u!61 &7217050276643198657
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -226,7 +275,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8737912346281670139
+--- !u!114 &-8428702230962710675
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -238,7 +287,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c3ac24616defc54096f5da701056ef7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cardName: Knob Knight
-  description: Swing Sword
+  cardName: Knight
+  description: Meele Mob
   manaCost: 1
   type: summon
+  model: {fileID: 5433155463901791285, guid: d527c5b482fec494ab3c7a5356b61b1f, type: 3}
+  isSummoned: 0

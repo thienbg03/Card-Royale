@@ -10,7 +10,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2276630253843586068, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
       propertyPath: m_Name
-      value: LavaSwordCard
+      value: LavaSwordEquipCard
       objectReference: {fileID: 0}
     - target: {fileID: 4424806359578939976, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
       propertyPath: m_Pivot.x
@@ -96,20 +96,35 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c63e20137f10bb34e8beac65eac33c24, type: 3}
-    - target: {fileID: 8737912346281670139, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
-      propertyPath: type
-      value: equipment
-      objectReference: {fileID: 0}
-    - target: {fileID: 8737912346281670139, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
-      propertyPath: cardName
-      value: Lava Sword
-      objectReference: {fileID: 0}
-    - target: {fileID: 8737912346281670139, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
-      propertyPath: description
-      value: Can cause burn damage
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -8428702230962710675, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 2276630253843586068, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 7680807891316013051}
   m_SourcePrefab: {fileID: 100100000, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+--- !u!1 &886345189191003253 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2276630253843586068, guid: 3ffbc7b20607aa84b9bab40ec37db3a3, type: 3}
+  m_PrefabInstance: {fileID: 1429006021331398753}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &7680807891316013051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 886345189191003253}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f48ee61735ee6f84699cc412f1cbf162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cardName: Laval Sword
+  description: Sword Attack
+  manaCost: 1
+  type: equipment
+  model: {fileID: 8730949480916675671, guid: 9452ae71e0f28a74eb527862ce4e457b, type: 3}
+  PlayerState: 0
